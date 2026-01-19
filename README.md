@@ -47,16 +47,16 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 <br>
 
 ## 💻 실행 화면 (Results)
-| 메인 대시보드 | 상세 분석 화면 |
+| 메인 대시보드 (Main Dashboard) | 상세 분석 화면 (Detailed Analysis) |
 | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/ad63d5ca-ff0f-4bf6-996a-90e72e2b085b" width="400"/> | <img src="https://github.com/user-attachments/assets/e9101781-ccd2-4041-89e6-8c1f2d1dc4e7" width="400"/> |
+| **설명:** 분석 대상 지자체 및 유형을 선택하고,<br>주요 지표의 전체적인 요약을 확인합니다. | **설명:** 선택한 지자체의 4대 지표 레이더 차트 및<br>동일 유형 평균과의 비교 분석 결과입니다. |
 
 <div align="center">
-  <<img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/6fcd6802-d485-46dd-9eec-371f2d6b0e36" />
->
-  <p>▲ 데이터 기반 인사이트 도출 화면</p>
+  <br>
+  <img width="80%" alt="FAQ 구현 화면" src="https://github.com/user-attachments/assets/6fcd6802-d485-46dd-9eec-371f2d6b0e36" />
+  <p>▲ <b>데이터 기반 스토리텔링:</b> 복잡한 수치 데이터를 분석하여, 누구나 이해하기 쉬운 직관적인 텍스트 인사이트로 변환하여 제공합니다.</p>
 </div>
-
 <br>
 
 ## 기대 효과 및 활용 대상
