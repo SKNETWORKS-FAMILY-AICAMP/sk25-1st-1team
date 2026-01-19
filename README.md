@@ -23,12 +23,12 @@ KLACI 4대 지표(성장성, 경제성, 생활여건, 안전성)를 레이더 �
 -지방자치단체 교통/도시계획 담당자: 데이터에 근거한 효율적인 교통 행정이 필요한 공무원
 -도시 공학/데이터 분석 연구자: 지자체 유형과 교통 데이터 간의 상관관계를 연구하는 학생 및 연구원
 # 4. 기술 스택
-- ! [파이썬](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
-- ! [스트림라이트](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
-- ! [판다들](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
-- ! [MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
-- ! [기트](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
-- ! [GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
+- ![파이썬](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+- ![스트림라이트](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+- ![판다들](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+- ![기트](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
+- ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
 # 5. 수행결과
 -<img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/ad63d5ca-ff0f-4bf6-996a-90e72e2b085b" />
 -<img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/e9101781-ccd2-4041-89e6-8c1f2d1dc4e7" />
