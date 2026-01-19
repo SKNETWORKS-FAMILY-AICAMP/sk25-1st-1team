@@ -1,0 +1,31 @@
+-- team1.vehicle_registration_stats_wide definition
+
+CREATE TABLE `vehicle_registration_stats_wide` (
+  `month` date NOT NULL,
+  `sido` varchar(50) NOT NULL,
+  `region_name` varchar(100) NOT NULL,
+  `sigungu_sample` varchar(100) DEFAULT NULL,
+  `승용_관용` bigint DEFAULT NULL,
+  `승용_자가용` bigint DEFAULT NULL,
+  `승용_영업용` bigint DEFAULT NULL,
+  `승용_계` bigint DEFAULT NULL,
+  `승합_관용` bigint DEFAULT NULL,
+  `승합_자가용` bigint DEFAULT NULL,
+  `승합_영업용` bigint DEFAULT NULL,
+  `승합_계` bigint DEFAULT NULL,
+  `화물_관용` bigint DEFAULT NULL,
+  `화물_자가용` bigint DEFAULT NULL,
+  `화물_영업용` bigint DEFAULT NULL,
+  `화물_계` bigint DEFAULT NULL,
+  `특수_관용` bigint DEFAULT NULL,
+  `특수_자가용` bigint DEFAULT NULL,
+  `특수_영업용` bigint DEFAULT NULL,
+  `특수_계` bigint DEFAULT NULL,
+  `총계_관용` bigint DEFAULT NULL,
+  `총계_자가용` bigint DEFAULT NULL,
+  `총계_영업용` bigint DEFAULT NULL,
+  `총계_계` bigint DEFAULT NULL,
+  PRIMARY KEY (`month`,`sido`,`region_name`),
+  KEY `idx_region` (`sido`,`region_name`),
+  KEY `idx_month` (`month`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

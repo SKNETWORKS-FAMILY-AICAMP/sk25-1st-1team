@@ -1,0 +1,9 @@
+-- team1.faq definition
+
+CREATE TABLE `faq` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category` varchar(100) DEFAULT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

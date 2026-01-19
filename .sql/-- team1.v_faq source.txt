@@ -1,0 +1,23 @@
+-- team1.v_faq source
+
+CREATE OR REPLACE
+ALGORITHM = UNDEFINED VIEW `v_faq` AS
+select
+    concat('faq_', `faq`.`id`) AS `uid`,
+    `faq`.`category` AS `category`,
+    `faq`.`question` AS `question`,
+    `faq`.`answer` AS `answer`,
+    'FAQ' AS `src`
+from
+    `faq`
+union all
+select
+    concat('tb_', `f`.`faq_id`) AS `uid`,
+    `c`.`cate_name` AS `category`,
+    `f`.`question` AS `question`,
+    `f`.`answer` AS `answer`,
+    `f`.`source_org` AS `src`
+from
+    (`tb_faq` `f`
+left join `tb_faq_category` `c` on
+    ((`c`.`cate_code` = `f`.`cate_code`)));

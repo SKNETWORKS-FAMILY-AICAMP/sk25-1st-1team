@@ -1,0 +1,24 @@
+-- team1.klaci_region_profile definition
+
+CREATE TABLE `klaci_region_profile` (
+  `region_id` int NOT NULL,
+  `year` int DEFAULT NULL,
+  `province_id` int DEFAULT NULL,
+  `province_name` varchar(20) DEFAULT NULL,
+  `region_name` varchar(30) DEFAULT NULL,
+  `district_type` varchar(10) DEFAULT NULL,
+  `weight_class` varchar(20) DEFAULT NULL,
+  `klaci_code` varchar(10) DEFAULT NULL,
+  `klaci_type` varchar(30) DEFAULT NULL,
+  `growth_score` float DEFAULT NULL,
+  `economy_score` float DEFAULT NULL,
+  `living_score` float DEFAULT NULL,
+  `safety_score` float DEFAULT NULL,
+  `total_score` float DEFAULT NULL,
+  `total_rank` int DEFAULT NULL,
+  `growth_rank` int DEFAULT NULL,
+  `economy_rank` int DEFAULT NULL,
+  `living_rank` int DEFAULT NULL,
+  `safety_rank` int DEFAULT NULL,
+  `region_key` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

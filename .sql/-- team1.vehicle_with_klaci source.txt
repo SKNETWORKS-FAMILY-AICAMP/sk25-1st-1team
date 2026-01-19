@@ -1,0 +1,43 @@
+-- team1.vehicle_with_klaci source
+
+CREATE OR REPLACE
+ALGORITHM = UNDEFINED VIEW `vehicle_with_klaci` AS
+select
+    `v`.`month` AS `month`,
+    `v`.`sido` AS `sido`,
+    `v`.`region_name` AS `region_name`,
+    `v`.`sigungu_sample` AS `sigungu_sample`,
+    `v`.`승용_관용` AS `승용_관용`,
+    `v`.`승용_자가용` AS `승용_자가용`,
+    `v`.`승용_영업용` AS `승용_영업용`,
+    `v`.`승용_계` AS `승용_계`,
+    `v`.`승합_관용` AS `승합_관용`,
+    `v`.`승합_자가용` AS `승합_자가용`,
+    `v`.`승합_영업용` AS `승합_영업용`,
+    `v`.`승합_계` AS `승합_계`,
+    `v`.`화물_관용` AS `화물_관용`,
+    `v`.`화물_자가용` AS `화물_자가용`,
+    `v`.`화물_영업용` AS `화물_영업용`,
+    `v`.`화물_계` AS `화물_계`,
+    `v`.`특수_관용` AS `특수_관용`,
+    `v`.`특수_자가용` AS `특수_자가용`,
+    `v`.`특수_영업용` AS `특수_영업용`,
+    `v`.`특수_계` AS `특수_계`,
+    `v`.`총계_관용` AS `총계_관용`,
+    `v`.`총계_자가용` AS `총계_자가용`,
+    `v`.`총계_영업용` AS `총계_영업용`,
+    `v`.`총계_계` AS `총계_계`,
+    `k`.`district_type` AS `district_type`,
+    `k`.`weight_class` AS `weight_class`,
+    `k`.`klaci_code` AS `klaci_code`,
+    `k`.`klaci_type` AS `klaci_type`,
+    `k`.`growth_score` AS `growth_score`,
+    `k`.`economy_score` AS `economy_score`,
+    `k`.`living_score` AS `living_score`,
+    `k`.`safety_score` AS `safety_score`,
+    `k`.`total_score` AS `total_score`,
+    `k`.`total_rank` AS `total_rank`
+from
+    (`vehicle_registration_stats_wide` `v`
+left join `klaci_region_profile` `k` on
+    (((trim(`v`.`sido`) = trim(`k`.`province_name`)) and (trim(`v`.`region_name`) = trim(`k`.`region_name`)) and (year(`v`.`month`) = `k`.`year`))));

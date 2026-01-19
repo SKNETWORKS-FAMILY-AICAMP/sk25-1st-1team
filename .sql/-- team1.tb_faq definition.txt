@@ -1,0 +1,18 @@
+-- team1.tb_faq definition
+
+CREATE TABLE `tb_faq` (
+  `faq_id` bigint NOT NULL AUTO_INCREMENT,
+  `cate_code` varchar(10) NOT NULL,
+  `question` text NOT NULL,
+  `answer` mediumtext,
+  `source_org` varchar(50) NOT NULL DEFAULT 'TS_KOTSA',
+  `source_type` enum('official','synthetic') NOT NULL DEFAULT 'official',
+  `source_url` varchar(500) DEFAULT NULL,
+  `page_no` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`faq_id`),
+  UNIQUE KEY `uq_faq` (`cate_code`,`question`(200)),
+  KEY `idx_cate` (`cate_code`),
+  FULLTEXT KEY `ft_qna` (`question`,`answer`),
+  CONSTRAINT `fk_faq_category` FOREIGN KEY (`cate_code`) REFERENCES `tb_faq_category` (`cate_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
