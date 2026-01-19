@@ -142,9 +142,10 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 
 <div align="center">
   <br>
-  <img width="80%" alt="FAQ 구현 화면" src="https://github.com/user-attachments/assets/6fcd6802-d485-46dd-9eec-371f2d6b0e36" />
-  <p>▲ <b>FAQ 구현 화면.
-</div>
+| 주제별로 카테고리를 나누어 질문과 답을 편리하게 확인할 수 있도록 구현하였다.|
+| :---: | :---: |
+| <img width="1578" height="516" alt="image" src="https://github.com/user-attachments/assets/0968638a-fa87-4b95-a475-530d436d807b" /> | <img width="211" height="392" alt="image" src="https://github.com/user-attachments/assets/c97191d5-4aa9-4e8f-934e-a17c9155131d" />
+|
 <br>
 
 ## 기대 효과 및 활용 대상
