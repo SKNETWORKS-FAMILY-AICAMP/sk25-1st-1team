@@ -4,7 +4,7 @@
 | **팀장**<br>데이터 처리<br>발표 및 PPT | **팀원**<br>데이터 수집<br>PPT 제작 | **팀원**<br>Streamlit 설계<br>README 작성 | **팀원**<br>Streamlit 구현<br>데이터 크롤링 | **팀원**<br>DB 구축 및 관리<br>데이터 크롤링 |
 
 <br>
-# 🚗 KLACI 지자체 유형에 따른 자동차 분포 분석
+🚗 KLACI 지자체 유형에 따른 자동차 분포 분석
 > **"지자체에도 MBTI가 있다?"** > 한국지방행정연구원(KLACI)의 지자체 유형 데이터와 자동차 등록 데이터를 결합하여,  
 > 도시의 성격을 진단하고 모빌리티 인사이트를 제공하는 데이터 분석 대시보드입니다.
 
@@ -52,7 +52,8 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 | <img src="https://github.com/user-attachments/assets/ad63d5ca-ff0f-4bf6-996a-90e72e2b085b" width="400"/> | <img src="https://github.com/user-attachments/assets/e9101781-ccd2-4041-89e6-8c1f2d1dc4e7" width="400"/> |
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/1e67d10f-923e-41c6-938c-b70909eaa3cf" width="80%">
+  <<img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/6fcd6802-d485-46dd-9eec-371f2d6b0e36" />
+>
   <p>▲ 데이터 기반 인사이트 도출 화면</p>
 </div>
 
