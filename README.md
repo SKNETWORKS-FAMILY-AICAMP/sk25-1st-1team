@@ -46,7 +46,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 
 <br>
 
-## 📁 프로젝트 구조 (Project Structure)
+# 📁 프로젝트 구조 (Project Structure)
 ```text
 .
 ├── README.md
@@ -65,6 +65,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
     ├── klaci_car_register_with_links.csv
     ├── kotsa_faq_C04_C05.xls
     └── 자동차등록현황보고_자동차등록대수현황 시도별 (201101 ~ 202512) (2).csv
+```
 
 
 ## 💻 실행 화면 (Results)
