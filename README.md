@@ -46,6 +46,47 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 
 <br>
 
+**## 📁 Project Structure
+
+```text
+.
+├── README.md
+├── .python/
+│   ├── car.py
+│   └── klaci.txt
+├── .sql/
+│   ├── team1.faq definition.txt
+│   ├── team1.klaci_region_profile defin.txt
+│   ├── team1.tb_faq definition.txt
+│   ├── team1.vehicle_registration_stats.txt
+│   ├── team1.vehicle_with_klaci source.txt
+│   └── team1.v_faq source.txt
+└── data/
+    ├── faq (2).csv
+    ├── klaci_car_register_with_links.csv
+    ├── kotsa_faq_C04_C05.xls
+    └── 자동차등록현황보고_자동차등록대수현황 시도별 (201101 ~ 202512) (2).csv
+```프로젝트 설계**
+.
+├── README.md
+├── .python/
+│   ├── car.py
+│   └── klaci.txt
+├── .sql/
+│   ├── team1.faq definition.txt
+│   ├── team1.klaci_region_profile defin.txt
+│   ├── team1.tb_faq definition.txt
+│   ├── team1.vehicle_registration_stats.txt
+│   ├── team1.vehicle_with_klaci source.txt
+│   └── team1.v_faq source.txt
+└── data/
+    ├── faq (2).csv
+    ├── klaci_car_register_with_links.csv
+    ├── kotsa_faq_C04_C05.xls
+    └── 자동차등록현황보고_자동차등록대수현황 시도별 (201101 ~ 202512) (2).csv
+
+
+
 ## 💻 실행 화면 (Results)
 | 메인 대시보드 (Main Dashboard) | 상세 분석 화면 (Detailed Analysis) |
 | :---: | :---: |
@@ -55,7 +96,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 <div align="center">
   <br>
   <img width="80%" alt="FAQ 구현 화면" src="https://github.com/user-attachments/assets/6fcd6802-d485-46dd-9eec-371f2d6b0e36" />
-  <p>▲ <b>FAQ 구현 화면:</b> 복잡한 수치 데이터를 분석하여, 누구나 이해하기 쉬운 직관적인 텍스트 인사이트로 변환하여 제공합니다.</p>
+  <p>▲ <b>FAQ 구현 화면.
 </div>
 <br>
 
