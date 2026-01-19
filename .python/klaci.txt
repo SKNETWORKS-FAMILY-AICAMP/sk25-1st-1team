@@ -1,0 +1,220 @@
+import requests
+import mysql.connector
+
+# =========================
+# 0) MySQL 연결
+# =========================
+conn = mysql.connector.connect(
+    host="myserver",
+    user="play",
+    password="123",
+    database="encore",
+    autocommit=True,
+    charset="utf8mb4"
+)
+cur = conn.cursor()
+
+# =========================
+# 1) KLACI 수집 (offset 방식)
+# =========================
+
+KLACI_URL = "https://api.klaci.kr/data/regions"
+YEAR = 2025
+LIMIT = 200
+
+# 2025 데이터 기준, 한번에 200개씩 데이터를 가져온다
+
+def fetch_klaci_all(year=YEAR, limit=LIMIT):
+    first = requests.get(KLACI_URL, params={"year": year, "limit": limit, "offset": 0}, timeout=30).json()
+    meta = first["data"]["meta"]
+    total = meta["total"]
+
+    all_rows = []
+    seen = set()
+
+    def add(chunk):
+        for r in chunk:
+            rid = r.get("id")
+            if rid is not None and rid not in seen:
+                seen.add(rid)
+                all_rows.append(r)
+
+    add(first["data"]["data"])
+
+    for offset in range(limit, total, limit):
+        payload = requests.get(KLACI_URL, params={"year": year, "limit": limit, "offset": offset}, timeout=30).json()
+        add(payload.get("data", {}).get("data", []))
+
+    return all_rows
+
+def join_lines(arr):
+    if not arr:
+        return None
+    lines = [x.strip() for x in arr if isinstance(x, str) and x.strip()]
+    return "\n".join(lines) if lines else None
+
+def make_region_key(province_name, region_name):
+    return f"{province_name or ''} {region_name or ''}".strip().replace("  ", " ")
+
+all_rows = fetch_klaci_all()
+print("✅ KLACI rows:", len(all_rows))  
+# =========================
+# 2) 필요한 필드만 뽑기
+# =========================
+region_rows = []
+type_rows = {}  # klaci_code별 1번만(중복 제거)
+
+for r in all_rows:
+    k = r.get("klaci", {}) or {}
+    province_name = (r.get("province") or {}).get("name")
+
+    klaci_code = (k.get("code") or r.get("klaci_code"))
+    if isinstance(klaci_code, str):
+        klaci_code = klaci_code.upper()  # 코드 표기 흔들림 방지
+
+    region_rows.append((
+        r.get("id"),                 # region_id (PK)
+        YEAR,                        # year
+        r.get("province_id"),        # province_id
+        province_name,               # province_name
+        r.get("name"),               # region_name
+        r.get("district_type"),      # district_type
+        r.get("weight_class"),       # weight_class
+        klaci_code,                  # klaci_code
+        k.get("type"),               # klaci_type
+        r.get("growth_score"),
+        r.get("economy_score"),
+        r.get("living_score"),
+        r.get("safety_score"),
+        r.get("total_score"),
+        r.get("total_rank"),
+        r.get("growth_rank"),
+        r.get("economy_rank"),
+        r.get("living_rank"),
+        r.get("safety_rank"),
+        make_region_key(province_name, r.get("name"))  # region_key
+    ))
+
+    if klaci_code and klaci_code not in type_rows:
+        type_rows[klaci_code] = (
+            klaci_code,
+            k.get("type"),
+            k.get("nickname"),
+            join_lines(k.get("summary")),
+            join_lines(k.get("trait")),
+            join_lines(k.get("strategy")),
+            join_lines(k.get("opportunity")),
+        )
+
+type_rows_list = list(type_rows.values())
+print("✅ TYPE rows:", len(type_rows_list))
+
+# =========================
+# 3) 테이블 생성 
+# =========================
+cur.execute("""
+CREATE TABLE IF NOT EXISTS klaci_region_profile (
+  region_id INT PRIMARY KEY,
+  year INT,
+  province_id INT,
+  province_name VARCHAR(20),
+  region_name VARCHAR(30),
+  district_type VARCHAR(10),
+  weight_class VARCHAR(20),
+
+  klaci_code VARCHAR(10),
+  klaci_type VARCHAR(30),
+
+  growth_score FLOAT,
+  economy_score FLOAT,
+  living_score FLOAT,
+  safety_score FLOAT,
+  total_score FLOAT,
+
+  total_rank INT,
+  growth_rank INT,
+  economy_rank INT,
+  living_rank INT,
+  safety_rank INT,
+
+  region_key VARCHAR(60),
+
+  INDEX idx_region_key (region_key),
+  INDEX idx_klaci_code (klaci_code),
+  INDEX idx_klaci_type (klaci_type)
+) CHARSET=utf8mb4;
+""")
+
+cur.execute("""
+CREATE TABLE IF NOT EXISTS klaci_type_definition (
+  klaci_code VARCHAR(10) PRIMARY KEY,
+  klaci_type VARCHAR(30),
+  nickname VARCHAR(200),
+  summary_text TEXT,
+  trait_text MEDIUMTEXT,
+  strategy_text MEDIUMTEXT,
+  opportunity_text MEDIUMTEXT
+) CHARSET=utf8mb4;
+""")
+
+print("✅ tables ready")
+
+# =========================
+# 4) 기존 데이터 비우고 재적재
+# =========================
+cur.execute("TRUNCATE TABLE klaci_region_profile;")
+cur.execute("TRUNCATE TABLE klaci_type_definition;")
+print("✅ tables truncated")
+
+# =========================
+# 5) INSERT
+# =========================
+insert_region_sql = """
+INSERT INTO klaci_region_profile (
+  region_id, year, province_id, province_name, region_name, district_type, weight_class,
+  klaci_code, klaci_type,
+  growth_score, economy_score, living_score, safety_score, total_score,
+  total_rank, growth_rank, economy_rank, living_rank, safety_rank,
+  region_key
+) VALUES (
+  %s,%s,%s,%s,%s,%s,%s,
+  %s,%s,
+  %s,%s,%s,%s,%s,
+  %s,%s,%s,%s,%s,
+  %s
+)
+"""
+
+cur.executemany(insert_region_sql, region_rows)
+print("✅ inserted klaci_region_profile:", len(region_rows))
+
+insert_type_sql = """
+INSERT INTO klaci_type_definition (
+  klaci_code, klaci_type, nickname, summary_text, trait_text, strategy_text, opportunity_text
+) VALUES (%s,%s,%s,%s,%s,%s,%s)
+"""
+
+cur.executemany(insert_type_sql, type_rows_list)
+print("✅ inserted klaci_type_definition:", len(type_rows_list))
+
+# =========================
+# 6) 검증
+# =========================
+cur.execute("SELECT COUNT(*) FROM klaci_region_profile;")
+print("klaci_region_profile count =", cur.fetchone()[0])
+
+cur.execute("SELECT COUNT(*) FROM klaci_type_definition;")
+print("klaci_type_definition count =", cur.fetchone()[0])
+
+cur.execute("""
+SELECT klaci_type, COUNT(*) cnt
+FROM klaci_region_profile
+GROUP BY klaci_type
+ORDER BY cnt DESC
+LIMIT 10;
+""")
+print("top types:", cur.fetchall())
+
+cur.close()
+conn.close()
+print("✅ DONE")
