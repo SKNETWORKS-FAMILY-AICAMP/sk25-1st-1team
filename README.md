@@ -48,6 +48,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 
 #  프로젝트 구조 (Project Structure)
 ```text
+📁 Project Structure
 .
 ├── 1team_final.py          # Streamlit 기반 메인 실행 파일
 ├── README.md               # 프로젝트 설명 문서
@@ -97,8 +98,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 <br>
 
 
-## 💬 한 줄 회고
-## 💬 한 줄 회고
+## 한 줄 회고
 
 **최현우**
 > (작성 예정)
