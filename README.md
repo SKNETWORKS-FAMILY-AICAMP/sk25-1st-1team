@@ -46,7 +46,7 @@ KLACI 4대 지표(`성장성`, `경제성`, `생활여건`, `안전성`)를 **�
 
 <br>
 
-**## 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 .
